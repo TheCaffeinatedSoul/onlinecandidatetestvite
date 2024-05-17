@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { headers } from "../../messages/constants";
 import logo from "../../assets/Resources/4i_Blue Logo with GPTW-01-01.svg";
 import "./NavbarComponent.css";
@@ -7,7 +7,7 @@ import { API_URL } from "../../api/api";
 import axios from "axios";
 
 export const NavbarComponent = () => {
-  const [cookie, setCookie] = useCookies();
+  const [cookie] = useCookies();
 
   const user = cookie.NAME;
   const token = cookie.TOKEN;
@@ -33,7 +33,7 @@ export const NavbarComponent = () => {
 
   useEffect(() => {
     fetchCandidate();
-  }, [candidateId]);
+  }, []);
 
   return (
     <div className="navbar">

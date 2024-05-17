@@ -1,10 +1,10 @@
-import React from "react";
 import { headers } from "../../messages/constants";
 import "./styles.css";
 import Lottie from "react-lottie";
 import warningAnimation from "../../assets/Lottie/Warning.json";
 import logo from "../../assets/Resources/4i_Blue Logo with GPTW-01-01.svg";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
+import PropTypes from "prop-types";
 
 export const TestSubmissionConfirmation = ({ cancel, submit }) => {
   const defaultOptions = {
@@ -32,13 +32,18 @@ export const TestSubmissionConfirmation = ({ cancel, submit }) => {
         </div>
         <div className="text-wrapper-2-new">
           <ButtonComponent
-            onClick={(e) => cancel()}
+            onClick={() => cancel()}
             name={"Cancel"}
             variant={"outline-danger"}
           />
-          <ButtonComponent onClick={(e) => submit()} name={"Confirm"} />
+          <ButtonComponent onClick={() => submit()} name={"Confirm"} />
         </div>
       </div>
     </div>
   );
+};
+
+TestSubmissionConfirmation.propTypes = {
+  cancel: PropTypes.func,
+  submit: PropTypes.func,
 };

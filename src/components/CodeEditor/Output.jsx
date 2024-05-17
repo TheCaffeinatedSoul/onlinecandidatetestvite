@@ -3,6 +3,7 @@ import { executeCode } from "../../api/api";
 import { toast } from "sonner";
 import { Button } from "react-bootstrap";
 import { CgSpinner } from "react-icons/cg";
+import PropTypes from "prop-types";
 
 export const Output = ({ editorRef, language }) => {
   const [output, setOutput] = useState(null);
@@ -49,4 +50,9 @@ export const Output = ({ editorRef, language }) => {
       </div>
     </div>
   );
+};
+
+Output.propTypes = {
+  editorRef: PropTypes.any,
+  language: PropTypes.string,
 };

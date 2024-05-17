@@ -1,7 +1,6 @@
 .intro-body {
-  padding-left: 3vw;
-  padding-right: 6vw;
-  padding-top: 5vh;
+  padding: 1rem;
+  padding-top: 0.5rem;
 }
 
 .main-card .card-body {
@@ -59,19 +58,17 @@
   flex: 1;
 }
 
+.next-button {
+  display: flex;
+  justify-content: end;
+}
+
 .next-button .btn {
   color: #0099dd !important;
   background-color: white;
   border: 1px solid #0099dd !important;
   font-size: 18px;
   font-weight: 400;
-  left: 100px;
-  letter-spacing: 0;
-  line-height: normal;
-  top: 5px;
-  margin-left: 90%;
-  margin-top: 1%;
-  width: 160px;
 }
 
 .next-button .btn:hover {
@@ -79,12 +76,6 @@
   background-color: #0099dd !important;
   font-size: 18px;
   font-weight: 400;
-  left: 100px;
-  letter-spacing: 0;
-  line-height: normal;
-  top: 5px;
-  margin-left: 90%;
-  margin-top: 1%;
 }
 
 .next-button .btn:active {
@@ -92,12 +83,6 @@
   background-color: #0099dd !important;
   font-size: 18px;
   font-weight: 400;
-  left: 100px;
-  letter-spacing: 0;
-  line-height: normal;
-  top: 5px;
-  margin-left: 90%;
-  margin-top: 1%;
 }
 
 .test-guidelines {

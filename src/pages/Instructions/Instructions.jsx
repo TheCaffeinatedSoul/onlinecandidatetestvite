@@ -6,11 +6,8 @@ import axios from "axios";
 import "./style.css";
 import { API_URL } from "../../api/api";
 import { QuestionComponent } from "../../components/QuestionsComponent/QuestionsComponent";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  responseSelector,
-  setResponse,
-} from "../../redux/features/response/responseSlice";
+import { useDispatch } from "react-redux";
+import { setResponse } from "../../redux/features/response/responseSlice";
 import {
   rules,
   messages,
@@ -25,7 +22,6 @@ export const Instructions = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const response = useSelector(responseSelector);
 
   const [cookie, setCookie] = useCookies([
     "CANDIDATE_ID",

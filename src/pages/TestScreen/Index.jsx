@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SectionComponent } from "../../components/SectionComponent/SectionComponent";
 import { QuestionComponent } from "../../components/QuestionsComponent/QuestionsComponent";
 import { ButtonComponent } from "../../components/ButtonComponent/ButtonComponent";
@@ -49,11 +49,7 @@ import { CodeEditor } from "../../components/CodeEditor/CodeEditor";
 export const TestScreen = () => {
   const navigate = useNavigate();
 
-  const [cookie, setCookie] = useCookies([
-    "CANDIDATE_ID",
-    "TEST_ID",
-    "TEST_KEY_NUM",
-  ]);
+  const [cookie] = useCookies();
 
   const token = cookie.TOKEN;
   const testId = cookie.TEST_ID;
@@ -80,7 +76,6 @@ export const TestScreen = () => {
   const [checkboxKey, setCheckboxKey] = useState(0);
   const [loading, setLoading] = useState(false);
   const [restrictTime, setRestrictTime] = useState("");
-  const [characterCount, setCharacterCount] = useState(0);
 
   const [lookupvalues] = useLookupType({ LOOKUP_TYPE: "query type" });
 
@@ -240,6 +235,13 @@ export const TestScreen = () => {
       const fillAnswer = await axios.post(`${API_URL}/fillanswers`, payload, {
         headers: { Authorization: token },
       });
+      if (!fillAnswer) {
+        toast.error(
+          `Failed to save answer for Section : ${String.fromCharCode(
+            currentSectionIndex + 1 + 64
+          )} Question No.: ${currentQuestionIndex + 1}`
+        );
+      }
     } catch (error) {
       console.log("Error updating response to the database: ", error);
     }
@@ -274,6 +276,9 @@ export const TestScreen = () => {
             },
           }
         );
+        if (removeanswer) {
+          toast.success("Response deleted");
+        }
       } catch (error) {
         console.log("Error removing response from the database: ", error);
       }
@@ -395,8 +400,7 @@ export const TestScreen = () => {
 
   const handleTextareaChange = async (value) => {
     const descResponse = value;
-    setCharacterCount(value.length);
-    if (value.length === 1000 || value.length > 1000) {
+    if (value.length >= 5000) {
       toast.warning("Character limit reached");
     }
     const isTextareaEmpty = descResponse.trim() === "";
@@ -478,6 +482,9 @@ export const TestScreen = () => {
             },
           }
         );
+        if (switchResponse) {
+          toast.warning("Tab switch detected");
+        }
       }
     };
     document.addEventListener("visibilitychange", handleTabSwitch);
@@ -571,7 +578,7 @@ export const TestScreen = () => {
           <div className="response-buttons">
             <div className="clear-response-button">
               <ButtonComponent
-                class={`clear-response`}
+                classname={`clear-response`}
                 name={`Clear Response`}
                 onClick={handleClearFields}
                 component={<VscTrash />}
@@ -579,7 +586,7 @@ export const TestScreen = () => {
             </div>
             <div className="flag-button">
               <ButtonComponent
-                class={`flag ${isFlagged === true ? "flagged" : ""}`}
+                classname={`flag ${isFlagged === true ? "flagged" : ""}`}
                 name={`${isFlagged === true ? "Unmark Flag" : "Mark Flag"}`}
                 onClick={handleFlagClick}
                 component={<PiFlagLight />}
@@ -595,7 +602,7 @@ export const TestScreen = () => {
                     ? activesection.queries.map(
                         (query, index) =>
                           query.queryId === question[0].queryId && (
-                            <div>
+                            <div key={index}>
                               <div className="question-div" key={index}>
                                 <div className="question-header">
                                   <div>Question :</div>
@@ -681,56 +688,49 @@ export const TestScreen = () => {
                                     lookupvalues,
                                     activesection._id.queryType
                                   ) === lookup.QUERY_TYPE.OBJECTIVE ? (
-                                  query.answers
-                                    .map((answer, answerIndex) => (
-                                      <div
-                                        className="radio-div"
-                                        key={answerIndex}
-                                      >
-                                        <input
-                                          key={checkboxKey}
-                                          className="option-input checkbox"
-                                          type="checkbox"
-                                          value={answer.answer}
-                                          checked={response
-                                            .find(
-                                              (r) =>
-                                                r.queryId ===
-                                                question[0].queryId
-                                            )
-                                            ?.answerId?.includes(
-                                              answer.answerId
-                                            )}
-                                          displayLast={
-                                            answer.displaylast === "Y"
-                                          }
-                                          onChange={(e) =>
-                                            handleCheckboxChange(
-                                              e,
-                                              answer.answerId
-                                            )
-                                          }
-                                        />
-                                        {String.fromCharCode(
-                                          64 + answer.answerSeqNum
-                                        )}
-                                        {")"} {answer.answer}
-                                      </div>
-                                    ))
-                                    .sort((a, b) => {
-                                      const aDisplayLast =
-                                        a.props.children[0].props.displayLast ||
-                                        false;
-                                      const bDisplayLast =
-                                        b.props.children[0].props.displayLast ||
-                                        false;
-                                      return aDisplayLast
-                                        ? 1
-                                        : bDisplayLast
-                                        ? -1
-                                        : 0;
-                                    })
+                                  query.answers.map((answer, answerIndex) => (
+                                    <div
+                                      className="radio-div"
+                                      key={answerIndex}
+                                    >
+                                      <input
+                                        key={checkboxKey}
+                                        className="option-input checkbox"
+                                        type="checkbox"
+                                        value={answer.answer}
+                                        checked={response
+                                          .find(
+                                            (r) =>
+                                              r.queryId === question[0].queryId
+                                          )
+                                          ?.answerId?.includes(answer.answerId)}
+                                        onChange={(e) =>
+                                          handleCheckboxChange(
+                                            e,
+                                            answer.answerId
+                                          )
+                                        }
+                                      />
+                                      {String.fromCharCode(
+                                        64 + answer.answerSeqNum
+                                      )}
+                                      {")"} {answer.answer}
+                                    </div>
+                                  ))
                                 ) : (
+                                  // .sort((a, b) => {
+                                  //   const aDisplayLast =
+                                  //     a.props.children[0].props.displayLast ||
+                                  //     false;
+                                  //   const bDisplayLast =
+                                  //     b.props.children[0].props.displayLast ||
+                                  //     false;
+                                  //   return aDisplayLast
+                                  //     ? 1
+                                  //     : bDisplayLast
+                                  //     ? -1
+                                  //     : 0;
+                                  // })
                                   <div>
                                     <CodeEditor
                                       key={codeEditorKey}
@@ -750,7 +750,7 @@ export const TestScreen = () => {
         </div>
         <div className="navigation-buttons">
           <ButtonComponent
-            class="previous-btn"
+            classname="previous-btn"
             name={`${buttons.previousButton}`}
             disabled={currentSectionIndex === 0 && currentQuestionIndex === 0}
             onClick={handlePreviousClick}
@@ -762,13 +762,13 @@ export const TestScreen = () => {
           currentQuestionIndex ===
             test[0][currentSectionIndex].queries.length - 1 ? (
             <ButtonComponent
-              class="summary-btn"
+              classname="summary-btn"
               name={`${buttons.summaryButton}`}
               onClick={handleSummaryClick}
             />
           ) : (
             <ButtonComponent
-              class="next-btn"
+              classname="next-btn"
               name={`${buttons.nextButton}`}
               onClick={handleNextClick}
             />

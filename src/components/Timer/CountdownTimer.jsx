@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.css";
 import { API_URL } from "../../api/api";
 import { useCookies } from "react-cookie";
@@ -13,7 +13,7 @@ import { events, timerMsgs } from "../../messages/constants";
 import { Loader } from "../PageLoader/PageLoader";
 
 export const CountdownTimer = () => {
-  const [cookie, setCookie, removeCookie] = useCookies();
+  const [cookie, , removeCookie] = useCookies();
 
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);

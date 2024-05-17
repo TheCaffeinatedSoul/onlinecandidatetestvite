@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   clearResponses,
   responseSelector,
@@ -26,7 +26,7 @@ export const SummaryScreen = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
-  const [cookie, setCookie, removeCookie] = useCookies([
+  const [cookie, , removeCookie] = useCookies([
     "NAME",
     "CANDIDATE_ID",
     "TEST_ID",
@@ -53,7 +53,7 @@ export const SummaryScreen = () => {
     totalQuestions -
     response.filter(
       (r) =>
-        r.answerId ||
+        (r.answerId && r.answerId.length > 0) ||
         (r?.descresponse !== undefined &&
           r?.descresponse !== null &&
           r?.descresponse !== "") ||
@@ -118,24 +118,24 @@ export const SummaryScreen = () => {
           },
         }
       );
-      setShowModal(true);
+      if (finishData) {
+        setShowModal(true);
+        setTimeout(() => {
+          setLoading(false);
 
-      setTimeout(() => {
-        setLoading(false);
+          dispatch(setTest([]));
+          dispatch(setSection([]));
+          dispatch(clearResponses([]));
+          dispatch(setQuery([]));
 
-        dispatch(setTest([]));
-        dispatch(setSection([]));
-        dispatch(clearResponses([]));
-        dispatch(setQuery([]));
-
-        removeCookie("TEST_ID");
-        removeCookie("TEST_KEY_NUM");
-        removeCookie("ANSWER_SHEET_HEADER_ID");
-        removeCookie("CANDIDATE_ID");
-        removeCookie("NAME");
-
+          removeCookie("TEST_ID");
+          removeCookie("TEST_KEY_NUM");
+          removeCookie("ANSWER_SHEET_HEADER_ID");
+          removeCookie("CANDIDATE_ID");
+          removeCookie("NAME");
+        }, 15000);
         window.close();
-      }, 15000);
+      }
     } catch (error) {
       setLoading(false);
       console.log("Error recording responses in db: ", error);
@@ -350,7 +350,7 @@ export const SummaryScreen = () => {
                       response.find((r) => r.queryId === query.queryId)
                         ?.isFlagged
                     }
-                    onClick={(e) =>
+                    onClick={() =>
                       onQuestionClick(query.questionNumber, sectionIndex)
                     }
                   />
@@ -361,13 +361,13 @@ export const SummaryScreen = () => {
       </div>
       <div className="navigation-buttons">
         <ButtonComponent
-          class="previous-btn"
+          classname="previous-btn"
           name={`${buttons.gobackButton}`}
           onClick={gotoTestPart}
         />
 
         <ButtonComponent
-          class="submit-btn"
+          classname="submit-btn"
           name={`${buttons.submitButton}`}
           onClick={handleSubmitTest}
         />

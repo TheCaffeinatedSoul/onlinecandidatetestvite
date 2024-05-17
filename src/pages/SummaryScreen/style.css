@@ -84,6 +84,7 @@
   background-color: #0099dd;
   border: 1px solid #0099dd;
   color: white;
+  margin: 0.5rem;
 }
 
 .navigation-buttons .submit-btn:hover {

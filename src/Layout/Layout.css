@@ -10,10 +10,9 @@
 .main-body {
   border-radius: 10px;
   background-color: none;
-  /* border: 1px solid #0099dd; */
   margin: 17px 36px 21px 36px;
   width: calc(100vw - 70px);
-  min-height: 85vh;
+  min-height: 84vh;
 }
 
 .outlet-container {

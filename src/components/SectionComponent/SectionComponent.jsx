@@ -1,9 +1,8 @@
-import React from "react";
 import "./SectionComponent.css";
+import PropTypes from "prop-types";
 
 export const SectionComponent = ({
   sectionName,
-  sectionId,
   topicName,
   isActive,
   onClick,
@@ -17,4 +16,11 @@ export const SectionComponent = ({
       <h6 className="topic-name">{topicName}</h6>
     </div>
   );
+};
+
+SectionComponent.propTypes = {
+  sectionName: PropTypes.string,
+  topicName: PropTypes.string,
+  isActive: PropTypes.bool,
+  onClick: PropTypes.func,
 };

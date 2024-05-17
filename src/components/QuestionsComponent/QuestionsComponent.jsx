@@ -1,10 +1,8 @@
-import React from "react";
 import "./QuestionsComponent.css";
+import PropTypes from "prop-types";
 
 export const QuestionComponent = ({
   questionNumber,
-  quertId,
-  query,
   isActive,
   isAnswered,
   isFlagged,
@@ -26,4 +24,12 @@ export const QuestionComponent = ({
       </div>
     </div>
   );
+};
+
+QuestionComponent.propTypes = {
+  questionNumber: PropTypes.number,
+  isActive: PropTypes.bool,
+  isAnswered: PropTypes.bool,
+  isFlagged: PropTypes.bool,
+  onClick: PropTypes.func,
 };

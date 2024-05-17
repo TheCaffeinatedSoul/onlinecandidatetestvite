@@ -1,4 +1,3 @@
-import React from "react";
 import { useCookies } from "react-cookie";
 import { useDispatch } from "react-redux";
 import { setTest } from "../../redux/features/test/testSlice";
@@ -9,20 +8,17 @@ import { headers, messages } from "../../messages/constants";
 import "./style.css";
 import Lottie from "react-lottie";
 import submitAnimation from "../../assets/Lottie/Submit.json";
-import { useNavigate } from "react-router-dom";
 import logo from "../../assets/Resources/4i_Blue Logo with GPTW-01-01.svg";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
 
 export const TestCompletionModal = () => {
-  const [cookie, setCookie, removeCookie] = useCookies([
+  const [, , removeCookie] = useCookies([
     "NAME",
     "CANDIDATE_ID",
     "TEST_ID",
     "TEST_KEY_NUM",
     "ANSWER_SHEET_HEADER_ID",
   ]);
-
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 

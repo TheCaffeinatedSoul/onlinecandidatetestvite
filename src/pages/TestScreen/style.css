@@ -20,18 +20,14 @@
 .navigation-buttons .btn {
   font-size: 15px;
   font-weight: 400;
-  left: 100px;
-  letter-spacing: 0;
-  line-height: normal;
-  margin: 1.2%;
-  width: 11vw;
-  height: 6vh;
 }
 
 .navigation-buttons .previous-btn {
   background-color: white;
   border: 1px solid #009bdd4d;
   color: #0099dd;
+  margin: 0.5rem;
+  margin-right: 1rem;
 }
 
 .navigation-buttons .previous-btn:disabled {
@@ -56,6 +52,7 @@
   background-color: #0099dd;
   border: 1px solid #0099dd;
   color: white;
+  margin: 0.5rem;
 }
 
 .navigation-buttons .next-btn:hover {
@@ -74,6 +71,7 @@
   background-color: #0099dd;
   border: 1px solid #0099dd;
   color: white;
+  margin: 0.5rem;
 }
 
 .navigation-buttons .summary-btn:hover {
@@ -319,7 +317,7 @@
 .response-buttons {
   display: flex;
   justify-content: space-evenly;
-  width: 30vw;
+  width: 35vw;
 }
 
 .clear-response-button {

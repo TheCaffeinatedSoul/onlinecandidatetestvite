@@ -9,6 +9,7 @@ import {
   setResponse,
 } from "../../redux/features/response/responseSlice";
 import { LANGUAGE_NAMES } from "../../messages/constants";
+import PropTypes from "prop-types";
 
 export const CodeEditor = ({ questionId, section }) => {
   const editorRef = useRef();
@@ -89,4 +90,9 @@ export const CodeEditor = ({ questionId, section }) => {
       <Output editorRef={editorRef} language={language} />
     </div>
   );
+};
+
+CodeEditor.propTypes = {
+  questionId: PropTypes.string,
+  section: PropTypes.string,
 };

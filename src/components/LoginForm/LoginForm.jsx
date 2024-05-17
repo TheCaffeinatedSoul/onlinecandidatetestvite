@@ -24,18 +24,16 @@ export const LoginForm = () => {
   });
   const searchParams = Object.fromEntries(URLSearchParams);
 
-  const { CANDIDATE_ID, TEST_ID, TEST_KEY_NUM, NAME, TEST_STATUS } =
-    useMemo(() => {
-      return {
-        CANDIDATE_ID: searchParams.CANDIDATE_ID || "",
-        TEST_ID: searchParams.TEST_ID || "",
-        TEST_KEY_NUM: searchParams.TEST_KEY_NUM || "",
-        TEST_STATUS: searchParams.TEST_STATUS || "",
-        NAME: searchParams.NAME || "",
-      };
-    }, [searchParams]);
+  const { CANDIDATE_ID, TEST_ID, TEST_KEY_NUM, NAME } = useMemo(() => {
+    return {
+      CANDIDATE_ID: searchParams.CANDIDATE_ID || "",
+      TEST_ID: searchParams.TEST_ID || "",
+      TEST_KEY_NUM: searchParams.TEST_KEY_NUM || "",
+      NAME: searchParams.NAME || "",
+    };
+  }, [searchParams]);
 
-  const [cookie, setCookie] = useCookies([
+  const [, setCookie] = useCookies([
     "CANDIDATE_ID",
     "TEST_ID",
     "TEST_KEY_NUM",

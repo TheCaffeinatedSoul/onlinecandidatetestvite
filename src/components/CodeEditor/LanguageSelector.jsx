@@ -2,6 +2,7 @@ import { Dropdown, DropdownToggle } from "react-bootstrap";
 import { LANGUAGE_NAMES, LANGUAGE_VERSIONS } from "../../messages/constants";
 import { useSelector } from "react-redux";
 import { responseSelector } from "../../redux/features/response/responseSlice";
+import PropTypes from "prop-types";
 
 const languages = Object.entries(LANGUAGE_VERSIONS);
 const languageNames = LANGUAGE_NAMES;
@@ -19,8 +20,8 @@ export const LanguageSelector = ({ language, onSelect, questionId }) => {
           {codeLang ? languageNames[codeLang] : languageNames[language]}
         </DropdownToggle>
         <Dropdown.Menu>
-          {languages.map(([lang, version]) => (
-            <Dropdown.Item onClick={() => onSelect(lang)}>
+          {languages.map(([lang]) => (
+            <Dropdown.Item onClick={() => onSelect(lang)} key={lang}>
               {languageNames[lang]}
             </Dropdown.Item>
           ))}
@@ -28,4 +29,10 @@ export const LanguageSelector = ({ language, onSelect, questionId }) => {
       </Dropdown>
     </div>
   );
+};
+
+LanguageSelector.propTypes = {
+  language: PropTypes.string,
+  onSelect: PropTypes.func,
+  questionId: PropTypes.string,
 };
