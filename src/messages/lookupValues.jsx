@@ -1,0 +1,27 @@
+export const lookup = Object.freeze({
+  QUERY_TYPE: {
+    OBJECTIVE: "OBJECTIVE",
+    DESCRIPTIVE: "DESCRIPTIVE",
+    PROGRAMMING: "PROGRAMMING",
+  },
+  TEST_TYPE: {
+    COMMON: "COMMON",
+    INDIVIDUAL: "INDIVIDUAL",
+  },
+  TEST_STATUS: {
+    NEW: "NEW",
+    IN_PROGRESS: "IN-PROGRESS",
+    COMPLETED: "COMPLETED",
+    EVALUATED: "EVALUATED",
+  },
+  USER_TYPE: {
+    INTERNAL: "INTERNAL",
+    EXTERNAL: "EXTERNAL",
+  },
+  USER_ROLE: {
+    ADMIN: "ADMIN",
+    HR: "HR",
+    CANDIDATE: "CANDIDATE",
+    EVALUATOR: "EVALUATOR",
+  },
+});
