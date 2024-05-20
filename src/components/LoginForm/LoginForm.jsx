@@ -8,6 +8,7 @@ import useLookupType from "../../hooks/useLookupType";
 import { errorMessages, events, headers } from "../../messages/constants";
 import logo from "../../assets/Resources/4i_Blue Logo with GPTW-01-01.svg";
 import { CgSpinner } from "react-icons/cg";
+import { BiKey } from "react-icons/bi";
 
 export const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -291,7 +292,9 @@ export const LoginForm = () => {
                   Validating <CgSpinner className="spinner-login" />
                 </div>
               ) : (
-                "Validate key"
+                <div>
+                  Validate key <BiKey />
+                </div>
               )}
             </button>
           </div>
