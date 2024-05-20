@@ -45,6 +45,8 @@ import useLookupType from "../../hooks/useLookupType";
 import { getLookupCode } from "../../util/helper";
 import { lookup } from "../../messages/lookupValues";
 import { CodeEditor } from "../../components/CodeEditor/CodeEditor";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { TbReportAnalytics } from "react-icons/tb";
 
 export const TestScreen = () => {
   const navigate = useNavigate();
@@ -754,6 +756,7 @@ export const TestScreen = () => {
             name={`${buttons.previousButton}`}
             disabled={currentSectionIndex === 0 && currentQuestionIndex === 0}
             onClick={handlePreviousClick}
+            component={<FiChevronLeft />}
           />
           {test &&
           test[0] &&
@@ -765,12 +768,14 @@ export const TestScreen = () => {
               classname="summary-btn"
               name={`${buttons.summaryButton}`}
               onClick={handleSummaryClick}
+              component={<TbReportAnalytics />}
             />
           ) : (
             <ButtonComponent
               classname="next-btn"
               name={`${buttons.nextButton}`}
               onClick={handleNextClick}
+              component={<FiChevronRight />}
             />
           )}
         </div>

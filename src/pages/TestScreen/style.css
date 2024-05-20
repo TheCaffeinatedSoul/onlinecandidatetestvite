@@ -317,7 +317,7 @@
 .response-buttons {
   display: flex;
   justify-content: space-evenly;
-  width: 35vw;
+  width: 36vw;
 }
 
 .clear-response-button {
@@ -330,6 +330,7 @@
   background-color: white !important;
   color: #fa2158 !important;
   border: 1px solid #fa21584d !important;
+  width: 13vw !important;
 }
 
 .clear-response:hover {

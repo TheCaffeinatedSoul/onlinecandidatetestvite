@@ -17,6 +17,7 @@ import {
 } from "../../messages/constants";
 import { Loader } from "../../components/PageLoader/PageLoader";
 import { ButtonComponent } from "../../components/ButtonComponent/ButtonComponent";
+import { FiChevronRight } from "react-icons/fi";
 
 export const Instructions = () => {
   const navigate = useNavigate();
@@ -242,6 +243,7 @@ export const Instructions = () => {
             onClick={startTest}
             name={buttons.nextButton}
             variant={"outline-primary"}
+            component={<FiChevronRight />}
           />
         </div>
       </div>

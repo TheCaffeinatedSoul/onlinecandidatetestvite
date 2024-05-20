@@ -3,7 +3,6 @@ export const messages = Object.freeze({
   termsMsg:
     "I, hereby, accept the terms and condition of the organisation and will follow all the rules and regulation detailed for the test",
   durationMsg: "Duration :",
-  duration: "60 mins",
   testCompletionMessage1:
     "Congratulations on completing the test! We appreciate your effort and dedication throughout the assessment.",
   testCompletionMessage2:
@@ -13,11 +12,13 @@ export const messages = Object.freeze({
 });
 
 export const buttons = Object.freeze({
-  nextButton: "Next >",
-  previousButton: "< Previous",
+  nextButton: "Next",
+  previousButton: "Previous",
   summaryButton: "Summary",
   submitButton: "Submit",
-  gobackButton: "< Go Back",
+  gobackButton: "Go Back",
+  cancel: "Cancel",
+  confirm: "Confirm",
 });
 
 export const headers = Object.freeze({
@@ -36,6 +37,11 @@ export const rules = [
   "Please note that switching tabs during the test is not permitted. Any attempt to do so may result in disqualification.",
   "These measures are in place to ensure the integrity and fairness of the testing process. We appreciate your cooperation and adherence to these guidelines.",
 ];
+
+export const confirmationMessages = Object.freeze({
+  testSubmission:
+    "You have not answered some question(s). Are you sure you want to complete the test ?",
+});
 
 export const events = Object.freeze({
   LOGIN_SUCCESS: "Login successful",

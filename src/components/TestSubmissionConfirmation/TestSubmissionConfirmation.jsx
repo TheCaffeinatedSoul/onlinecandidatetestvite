@@ -1,4 +1,8 @@
-import { headers } from "../../messages/constants";
+import {
+  buttons,
+  confirmationMessages,
+  headers,
+} from "../../messages/constants";
 import "./styles.css";
 import Lottie from "react-lottie";
 import warningAnimation from "../../assets/Lottie/Warning.json";
@@ -26,17 +30,18 @@ export const TestSubmissionConfirmation = ({ cancel, submit }) => {
         <div className="rectangle-new">
           <Lottie options={defaultOptions} height={160} width={160} />
         </div>
-        <div className="div-new">
-          You have not answered some questions. Are you sure you want to
-          complete the test ?
-        </div>
+        <div className="div-new">{confirmationMessages.testSubmission}</div>
         <div className="text-wrapper-2-new">
           <ButtonComponent
             onClick={() => cancel()}
-            name={"Cancel"}
+            name={buttons.cancel}
             variant={"outline-danger"}
           />
-          <ButtonComponent onClick={() => submit()} name={"Confirm"} />
+          <ButtonComponent
+            variant={"outline-primary"}
+            onClick={() => submit()}
+            name={buttons.confirm}
+          />
         </div>
       </div>
     </div>

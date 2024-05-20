@@ -19,6 +19,7 @@ import { setSection } from "../../redux/features/section/sectionSlice";
 import { setQuery } from "../../redux/features/query/querySlice";
 import { Loader } from "../../components/PageLoader/PageLoader";
 import { TestSubmissionConfirmation } from "../../components/TestSubmissionConfirmation/TestSubmissionConfirmation";
+import { FiChevronLeft } from "react-icons/fi";
 
 export const temporaryStorage = {};
 
@@ -364,6 +365,7 @@ export const SummaryScreen = () => {
           classname="previous-btn"
           name={`${buttons.gobackButton}`}
           onClick={gotoTestPart}
+          component={<FiChevronLeft />}
         />
 
         <ButtonComponent

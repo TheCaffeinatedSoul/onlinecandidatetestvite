@@ -10,6 +10,7 @@ import Lottie from "react-lottie";
 import submitAnimation from "../../assets/Lottie/Submit.json";
 import logo from "../../assets/Resources/4i_Blue Logo with GPTW-01-01.svg";
 import { ButtonComponent } from "../ButtonComponent/ButtonComponent";
+import { MdDone } from "react-icons/md";
 
 export const TestCompletionModal = () => {
   const [, , removeCookie] = useCookies([
@@ -63,7 +64,11 @@ export const TestCompletionModal = () => {
           <p>{messages.testCompletionMessage3}</p>
         </div>
         <div className="text-wrapper-2">
-          <ButtonComponent onClick={(e) => handleDone(e)} name={"Done"} />
+          <ButtonComponent
+            onClick={(e) => handleDone(e)}
+            name={"Done"}
+            component={<MdDone />}
+          />
         </div>
       </div>
     </div>
